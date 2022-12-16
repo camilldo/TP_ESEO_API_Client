@@ -1,0 +1,22 @@
+@charset "UTF-8";
+body {
+	margin: 0;
+	text-align: center;
+}
+
+select {
+  margin: 50px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+}
+
+table {
+	margin-right: 0;
+}
+
+input {
+	border: none;
+	background-color: transparent;
+}

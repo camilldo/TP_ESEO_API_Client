@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Liste des villes</title>
+	<link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" media="all"/>
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/dataTables.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
+	<script th:src="@{/js/jquery-3.5.1.js}" type="text/javascript"></script>
+	<script th:src="@{/js/jquery.dataTables.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/dataTables.bootstrap5.min.js}" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+		  $('#table1').DataTable();
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<div th:replace="header/header"></div>
+	</div>
+	<h1></h1>
+	<table id="table1" class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Code Commune</th>
+				<th>Nom Commune</th>
+				<th>Code Postal</th>
+				<th>Libelle</th>
+				<th>Ligne</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Modifier</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${villes.isEmpty()}">
+				<td>Il n'y a aucune villes dans la base de données</td>
+			</tr>
+			
+			<tr th:each="ville : ${villes}">
+				<td th:text="${ville.codeCommune}"></td>
+				<td th:text="${ville.nomCommune}"></td>
+				<td th:text="${ville.codePostal}"></td>
+				<td th:text="${ville.libelleAcheminement}"></td>
+				<td th:text="${ville.ligne}"></td>
+				<td th:text="${ville.coordonnee.latitude}"></td>
+				<td th:text="${ville.coordonnee.longitude}"></td>
+				<td>
+					<a th:href="@{/listVille/{codeCommune} (codeCommune=${ville.codeCommune})}" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-eye-fill" viewBox="0 0 16 16">
+						  	<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+						  	<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+						</svg>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

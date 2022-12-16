@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Distance</title>
+	<link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+	<div>
+		<div th:replace="header/header"></div>
+	</div>
+	<h1>Sélectionnez 2 villes pour calculer la distance les séparant</h1>
+	<form th:method="post" th:action="@{/}" th:object="${binomeVille}">
+		<table>
+			<td>
+				<select name="villeA" id="villeA" th:field="*{villeA}" required="required">
+	    			<option value="" hidden>Séléctionnez une ville</option>
+	    			<option th:each="ville : ${villes}" th:text="${ville.nomCommune}" th:value="${ville}"></option>
+				</select>
+			</td>
+			<td>
+				<select name="villeB" id="villeB" th:field="*{villeB}" required="required">
+					<option value="" hidden>Séléctionnez une ville</option>
+					<option th:each="ville : ${villes}" th:text="${ville.nomCommune}" th:value="${ville}"></option>
+				</select>
+			</td>
+		</table>
+		<button type="submit">Calculer la distance</button>
+	</form>
+	<div th:if="${distance != null}">
+		<p><span>La distance entre les 2 villes vaut : </span><span th:text="${distance}"></span>
+	</div>
+</body>
+</html>

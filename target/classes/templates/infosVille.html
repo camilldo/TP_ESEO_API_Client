@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/css/infosVille.css}" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+	<div>
+		<div th:replace="header/header"></div>
+	</div>
+	<h1>Informations de la ville ayant pour code de commune : <span th:text="${codeC}"></span></h1>
+  	<form th:method="post" th:action="@{/listVille/{codeCommune} (codeCommune=${codeC})}" th:object="${ville}">
+  		<table class="form">
+  			<tr>
+  				<td>
+  					<label for="name">Nom :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="name" name="name" th:value="${nomCommune}" th:field="*{nomCommune}">
+  				</td>
+  			<tr>
+  			<tr>
+  				<td>
+  					<label for="postalCode">Code Postal :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="postalCode" name="postalCode" th:value="${codePostal}" th:field="*{codePostal}">
+  				</td>
+  			<tr>
+  			<tr>
+  				<td>
+  					<label for="libelle">Libelle :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="libelle" name="libelle" th:value="${libelleAcheminement}" th:field="*{libelleAcheminement}">
+  				</td>
+  			<tr>
+  			<tr>
+  				<td>
+  					<label for="line">Ligne :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="line" name="line" th:value="${ligne}" th:field="*{ligne}">
+  				</td>
+  			<tr>
+  			<tr>
+  				<td>
+  					<label for="latitude">Latitude :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="latitude" name="latitude" th:value="${latitude}" th:field="*{coordonnee.latitude}">
+  				</td>
+  			<tr>
+  			<tr>
+  				<td>
+  					<label for="longitude">Longitude :</label>
+  				</td>
+  				<td>
+  					<input type="text" id="longitude" name="longitude" th:value="${longitude}" th:field="*{coordonnee.longitude}">
+  				</td>
+  			<tr>
+  		</table>
+	  	
+	    <input type="submit" value="Modifier">
+	</form>
+	
+	<a th:href="@{/listVille}">
+    	<button class="retour">Retour</button>
+    </a>
+</body>
+</html>
